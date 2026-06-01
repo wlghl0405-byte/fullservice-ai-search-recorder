@@ -69,5 +69,39 @@
     "collection_status": "수집 성공",
     "error_message": "",
     "elapsed_seconds": 18
+  },
+  {
+    "run_id": "e4da33d4-fad6-4610-b56a-41c1873aead7",
+    "exam_id": "exam_2026_06",
+    "exam_name": "2026년 6월 모의평가",
+    "stage_name": "시험 종료",
+    "query_id": "9dc71282-d93c-4ce2-98c8-a6268012978c",
+    "category": "등급컷",
+    "query_text": "전 과목 등급컷 한 번에 보여줘",
+    "answer_title": "",
+    "answer_text": "어떤 학년의 등급컷을 찾으시는지 알려주시면 해당 정보를 안내해 드리겠습니다.",
+    "answer_html": "\n  어떤 학년의 등급컷을 찾으시는지 알려주시면 해당 정보를 안내해 드리겠습니다.\n",
+    "source_links": "[]",
+    "executed_at": "2026-06-01T17:48:48",
+    "collection_status": "수집 성공",
+    "error_message": "",
+    "elapsed_seconds": 16
+  },
+  {
+    "run_id": "e4da33d4-fad6-4610-b56a-41c1873aead7",
+    "exam_id": "exam_2026_06",
+    "exam_name": "2026년 6월 모의평가",
+    "stage_name": "시험 종료",
+    "query_id": "5cf07631-42d0-4678-b80d-6ccc9b877f88",
+    "category": "등급컷",
+    "query_text": "등급컷 언제 나와?",
+    "answer_title": "",
+    "answer_text": "메가스터디에서는 시험 종료 후 채점 데이터를 수집하고 표본 집계 과정을 거쳐 등급컷을 추정하여 제공하고 있습니다. 시험 채점 완료 후에는 메가스터디 홈페이지의 [입시정보 > 수능/모의고사 풀서비스 > 실시간 등급컷] 메뉴를 통해 실시간으로 등급컷을 확인할 수 있습니다.[3]\n\n현재 2026년 3월 학력평가 등급컷은 확정되어 제공되고 있습니다. 어떤 시험의 등급컷을 찾으시는지 학년과 과목명을 알려주시면 자세히 안내해 드리겠습니다.[2,2,2,2,2]",
+    "answer_html": "\n  메가스터디에서는 시험 종료 후 채점 데이터를 수집하고 표본 집계 과정을 거쳐 등급컷을 추정하여 제공하고 있습니다. <span class=\"megaml-citation\">시험 채점 완료 후에는 메가스터디 홈페이지의 [입시정보 &gt; 수능/모의고사 풀서비스 &gt; 실시간 등급컷] 메뉴를 통해 실시간으로 등급컷을 확인할 수 있습니다.<sup class=\"megaml-citation__refs\" data-indices=\"13-2\">[3]</sup></span>\n\n<p>현재 2026년 3월 학력평가 등급컷은 확정되어 제공되고 있습니다. <span class=\"megaml-citation\">어떤 시험의 등급컷을 찾으시는지 학년과 과목명을 알려주시면 자세히 안내해 드리겠습니다.<sup class=\"megaml-citation__refs\" data-indices=\"43-1,44-1,45-1,46-1,47-1\">[2,2,2,2,2]</sup></span></p>\n",
+    "source_links": "[]",
+    "executed_at": "2026-06-01T17:49:10",
+    "collection_status": "수집 성공",
+    "error_message": "",
+    "elapsed_seconds": 19
   }
 ]

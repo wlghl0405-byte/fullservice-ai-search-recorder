@@ -515,5 +515,27 @@
     "elapsed_seconds": 18,
     "collection_status": "수집 성공",
     "error_message": ""
+  },
+  {
+    "run_id": "e4da33d4-fad6-4610-b56a-41c1873aead7",
+    "query_id": "9dc71282-d93c-4ce2-98c8-a6268012978c",
+    "query_text": "전 과목 등급컷 한 번에 보여줘",
+    "execution_order": 1,
+    "started_at": "2026-06-01T08:48:32.004Z",
+    "ended_at": "2026-06-01T08:48:48.093Z",
+    "elapsed_seconds": 16,
+    "collection_status": "수집 성공",
+    "error_message": ""
+  },
+  {
+    "run_id": "e4da33d4-fad6-4610-b56a-41c1873aead7",
+    "query_id": "5cf07631-42d0-4678-b80d-6ccc9b877f88",
+    "query_text": "등급컷 언제 나와?",
+    "execution_order": 2,
+    "started_at": "2026-06-01T08:48:51.196Z",
+    "ended_at": "2026-06-01T08:49:10.544Z",
+    "elapsed_seconds": 19,
+    "collection_status": "수집 성공",
+    "error_message": ""
   }
 ]

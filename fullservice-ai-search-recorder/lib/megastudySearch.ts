@@ -5,8 +5,8 @@ import { format } from 'date-fns';
 
 const MEGASTUDY_URL = process.env.MEGASTUDY_AI_SEARCH_URL || 'https://www.megastudy.net/search_ai/search_main.asp';
 const HEADLESS = process.env.PLAYWRIGHT_HEADLESS !== 'false';
-const SEARCH_DELAY_MS = parseInt(process.env.SEARCH_DELAY_MS || '5000');
-const AI_ANSWER_TIMEOUT_MS = parseInt(process.env.AI_ANSWER_TIMEOUT_MS || '30000');
+const SEARCH_DELAY_MS = parseInt(process.env.SEARCH_DELAY_MS || '3000');
+const AI_ANSWER_TIMEOUT_MS = parseInt(process.env.AI_ANSWER_TIMEOUT_MS || '20000');
 const MAX_RETRY = parseInt(process.env.MAX_RETRY_COUNT || '1');
 
 export interface RunSearchOptions {
@@ -34,6 +34,7 @@ async function searchOneQuery(
   stage_name: string,
   execution_order: number,
   run_id: string,
+  isFirst: boolean,
 ): Promise<{ result: SearchResult; log: ExecutionLog }> {
   const started_at = new Date().toISOString();
   const startTime = Date.now();
@@ -46,8 +47,16 @@ async function searchOneQuery(
   let error_message = '';
 
   try {
-    // 페이지 이동
-    await page.goto(MEGASTUDY_URL, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    // 첫 질의는 무조건 페이지 이동, 이후엔 검색창 재사용 시도
+    if (isFirst) {
+      await page.goto(MEGASTUDY_URL, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    } else {
+      const searchBox = page.locator('textarea#kwd2');
+      const visible = await searchBox.isVisible().catch(() => false);
+      if (!visible) {
+        await page.goto(MEGASTUDY_URL, { waitUntil: 'domcontentloaded', timeout: 30000 });
+      }
+    }
 
     // 검색창 대기 및 입력
     await page.waitForSelector('textarea#kwd2', { timeout: 15000 });
@@ -206,7 +215,7 @@ export async function runSearch(options: RunSearchOptions): Promise<RunSearchOut
       let res: { result: SearchResult; log: ExecutionLog } | null = null;
       for (let attempt = 0; attempt <= MAX_RETRY; attempt++) {
         try {
-          res = await searchOneQuery(page, query, exam_id, exam_name, stage_name, i + 1, run_id);
+          res = await searchOneQuery(page, query, exam_id, exam_name, stage_name, i + 1, run_id, i === 0);
           if (res.result.collection_status === '수집 성공') break;
           if (attempt < MAX_RETRY) {
             await delay(3000);
@@ -254,7 +263,7 @@ export async function runSearch(options: RunSearchOptions): Promise<RunSearchOut
       }
 
       if (i < queries.length - 1) {
-        const jitter = Math.floor(Math.random() * 5000);
+        const jitter = Math.floor(Math.random() * 2000);
         await delay(SEARCH_DELAY_MS + jitter);
       }
     }
