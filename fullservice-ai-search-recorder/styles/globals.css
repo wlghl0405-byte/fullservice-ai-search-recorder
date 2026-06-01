@@ -453,7 +453,7 @@ body {
   border-radius: 0 3px 3px 0;
 }
 .rubric-table { font-size: 11px; }
-.rubric-table th { font-size: 11px; }
+.rubric-table th { font-size: 11px; position: static; }
 .rubric-inspection { color: #555; font-style: italic; }
 
 .pagination { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px 0; }

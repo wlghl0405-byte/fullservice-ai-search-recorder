@@ -449,5 +449,71 @@
     "elapsed_seconds": 9,
     "collection_status": "수집 성공",
     "error_message": ""
+  },
+  {
+    "run_id": "e8912532-ca4c-441b-8b25-184242c02ce9",
+    "query_id": "4ddb08e4-a564-48ef-a7d5-dc14e442bd16",
+    "query_text": "고3 국어 정답 알려줘",
+    "execution_order": 1,
+    "started_at": "2026-06-01T07:43:28.194Z",
+    "ended_at": "2026-06-01T07:43:51.866Z",
+    "elapsed_seconds": 24,
+    "collection_status": "수집 성공",
+    "error_message": ""
+  },
+  {
+    "run_id": "e8912532-ca4c-441b-8b25-184242c02ce9",
+    "query_id": "a98e8122-ec5a-4823-989b-6c3e7450bcb6",
+    "query_text": "영어 31번 정답 뭐야?",
+    "execution_order": 2,
+    "started_at": "2026-06-01T07:44:01.217Z",
+    "ended_at": "2026-06-01T07:44:16.273Z",
+    "elapsed_seconds": 15,
+    "collection_status": "수집 성공",
+    "error_message": ""
+  },
+  {
+    "run_id": "e8912532-ca4c-441b-8b25-184242c02ce9",
+    "query_id": "013f6e21-79b0-420d-9e11-674590445bff",
+    "query_text": "고3 수학 배점 알려줘",
+    "execution_order": 3,
+    "started_at": "2026-06-01T07:44:22.892Z",
+    "ended_at": "2026-06-01T07:44:38.482Z",
+    "elapsed_seconds": 16,
+    "collection_status": "수집 성공",
+    "error_message": ""
+  },
+  {
+    "run_id": "0d1e70ca-6627-4810-8e7a-77e7fca5da49",
+    "query_id": "92c17f75-8d23-4a91-931a-e08f631c7efd",
+    "query_text": "고3 수학 정답 알려줘",
+    "execution_order": 1,
+    "started_at": "2026-06-01T08:00:46.593Z",
+    "ended_at": "2026-06-01T08:01:15.207Z",
+    "elapsed_seconds": 29,
+    "collection_status": "수집 성공",
+    "error_message": ""
+  },
+  {
+    "run_id": "0d1e70ca-6627-4810-8e7a-77e7fca5da49",
+    "query_id": "2afe6ae4-4291-4e08-8bdb-f94d064d0e32",
+    "query_text": "한국사 정답 알려줘",
+    "execution_order": 2,
+    "started_at": "2026-06-01T08:01:20.415Z",
+    "ended_at": "2026-06-01T08:01:37.539Z",
+    "elapsed_seconds": 17,
+    "collection_status": "수집 성공",
+    "error_message": ""
+  },
+  {
+    "run_id": "0d1e70ca-6627-4810-8e7a-77e7fca5da49",
+    "query_id": "ed9382e2-0fae-4fa4-b1a2-d9deba8cb7a2",
+    "query_text": "화법과 작문 10번 배점 알려줘",
+    "execution_order": 3,
+    "started_at": "2026-06-01T08:01:46.668Z",
+    "ended_at": "2026-06-01T08:02:04.984Z",
+    "elapsed_seconds": 18,
+    "collection_status": "수집 성공",
+    "error_message": ""
   }
 ]
