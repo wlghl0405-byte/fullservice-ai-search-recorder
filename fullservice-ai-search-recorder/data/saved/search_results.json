@@ -14,27 +14,7 @@
     "executed_at": "2026-06-01T17:01:15",
     "collection_status": "수집 성공",
     "error_message": "",
-    "elapsed_seconds": 29,
-    "verdict": {
-      "verdict_status": "수정 필요",
-      "issues": [
-        {
-          "error_type": "필수_문구_누락",
-          "rubric_point": "규칙 7",
-          "description": "시험 종료 전 단계에서 정답을 확정값으로 제공하고 있으나, 채점 서비스 오픈 이후 확인 가능하다는 준비 중 안내 문구가 없습니다.",
-          "correction_request": "답변 상단에 '현재 답변을 준비 중입니다. 채점 서비스 오픈 이후 확인 가능합니다.' 또는 유사한 필수 안내 문구를 추가하세요."
-        },
-        {
-          "error_type": "풀서비스_링크_누락",
-          "rubric_point": "규칙 5",
-          "description": "답변 하단에 해당 시험(고3 수학)의 풀서비스 바로가기 링크가 없습니다.",
-          "correction_request": "답변 하단에 '자세한 풀서비스 정보는 아래 바로가기를 통해 확인하실 수 있습니다. ▶ [고3 수학 풀서비스 페이지 바로가기]' 형식의 링크를 추가하세요."
-        }
-      ],
-      "verdict_at": "2026-06-01T08:02:42.727Z",
-      "verdict_note": "시험 종료 전 정답 제공 단계에서 필수 안내 문구(준비 중 안내)가 누락되었으며, 풀서비스 바로가기 링크가 없습니다.",
-      "collection_failure": false
-    }
+    "elapsed_seconds": 29
   },
   {
     "run_id": "0d1e70ca-6627-4810-8e7a-77e7fca5da49",
@@ -103,5 +83,42 @@
     "collection_status": "수집 성공",
     "error_message": "",
     "elapsed_seconds": 19
+  },
+  {
+    "run_id": "9a8d766b-91d1-458b-872b-e31c9b4758d4",
+    "exam_id": "exam_2026_06",
+    "exam_name": "2026년 6월 모의평가",
+    "stage_name": "메가스터디 자체 등급컷 확정",
+    "query_id": "4e6432e1-5317-459a-ab85-7e6d99dccf10",
+    "category": "정답",
+    "query_text": "고3 국어 정답 알려줘",
+    "answer_title": "2026년 6월 모의고사 고3 국어 정답",
+    "answer_text": "2026년 6월 모의고사 고3 국어 영역의 정답은 선택 과목에 따라 다음과 같습니다.",
+    "answer_html": "\n  2026년 6월 모의고사 고3 국어 영역의 정답은 선택 과목에 따라 다음과 같습니다.<br>\n",
+    "source_links": "[]",
+    "executed_at": "2026-06-09T16:55:11",
+    "collection_status": "수집 실패",
+    "error_message": "",
+    "elapsed_seconds": 13,
+    "verdict": {
+      "verdict_status": "수정 필요",
+      "issues": [
+        {
+          "error_type": "테이블_형식_누락",
+          "rubric_point": "규칙 2: 목록형 데이터 구조화",
+          "description": "선택 과목별 정답을 제시하겠다는 문구만 있고 실제 정답 데이터(문제번호별 답안)가 테이블 형식으로 제공되지 않음",
+          "correction_request": "선택 과목별(문학/언어와 매체) 1-45번 문제의 정답을 테이블 형식으로 구조화하여 제공"
+        },
+        {
+          "error_type": "풀서비스_링크_누락",
+          "rubric_point": "규칙 5: 풀서비스 바로가기 링크 포함",
+          "description": "답변 하단에 고3 모의고사 풀서비스 페이지 바로가기 링크가 없음",
+          "correction_request": "답변 하단에 '자세한 풀서비스 정보는 아래 바로가기를 통해 확인하실 수 있습니다. ▶ [2026년 6월 모의고사 풀서비스 페이지 바로가기]' 형식으로 링크 추가"
+        }
+      ],
+      "verdict_at": "2026-06-09T07:55:24.897Z",
+      "verdict_note": "답변이 테이블 헤더 수준의 구조만 제시하고 실제 정답 데이터가 없어 수집 실패로 판단됩니다. 또한 필수 풀서비스 링크가 누락되어 있습니다.",
+      "collection_failure": true
+    }
   }
 ]

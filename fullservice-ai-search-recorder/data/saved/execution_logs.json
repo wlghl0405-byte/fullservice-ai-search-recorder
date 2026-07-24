@@ -537,5 +537,16 @@
     "elapsed_seconds": 19,
     "collection_status": "수집 성공",
     "error_message": ""
+  },
+  {
+    "run_id": "9a8d766b-91d1-458b-872b-e31c9b4758d4",
+    "query_id": "4e6432e1-5317-459a-ab85-7e6d99dccf10",
+    "query_text": "고3 국어 정답 알려줘",
+    "execution_order": 1,
+    "started_at": "2026-06-09T07:54:58.941Z",
+    "ended_at": "2026-06-09T07:55:11.475Z",
+    "elapsed_seconds": 13,
+    "collection_status": "수집 성공",
+    "error_message": ""
   }
 ]

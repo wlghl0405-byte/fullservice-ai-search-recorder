@@ -2,7 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import { TimelineStage, TestQuery, SearchResult, ExecutionLog } from './types';
 
-const DATA_DIR = path.join(process.cwd(), 'data', 'saved');
+const DATA_DIR = process.env.DATA_DIR
+  ? path.join(process.env.DATA_DIR, 'saved')
+  : path.join(process.cwd(), 'data', 'saved');
 
 function ensureDir() {
   if (!fs.existsSync(DATA_DIR)) {

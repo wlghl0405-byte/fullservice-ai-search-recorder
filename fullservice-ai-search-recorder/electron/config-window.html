@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'">
+<title>설정</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'Segoe UI', sans-serif;
+    background: #f9fafb;
+    color: #111827;
+    padding: 28px 32px;
+    font-size: 14px;
+  }
+  h2 { font-size: 18px; font-weight: 700; margin-bottom: 24px; color: #111827; }
+  .field { margin-bottom: 20px; }
+  label { display: block; font-size: 12px; font-weight: 600; color: #374151; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.4px; }
+  input[type="text"], input[type="password"] {
+    width: 100%; padding: 10px 12px;
+    border: 1px solid #d1d5db; border-radius: 8px;
+    font-size: 13px; color: #111827; background: #fff;
+    outline: none;
+  }
+  input:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
+  .toggle-row { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+  .toggle-row input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; }
+  .toggle-label { font-size: 13px; color: #374151; }
+  hr { border: none; border-top: 1px solid #e5e7eb; margin: 20px 0; }
+  .chromium-section h3 { font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 10px; }
+  .chromium-status { font-size: 12px; margin-bottom: 10px; padding: 8px 12px; border-radius: 6px; }
+  .chromium-status.ok { background: #f0fdf4; color: #15803d; }
+  .chromium-status.missing { background: #fff7ed; color: #b45309; }
+  .chromium-log { font-size: 11px; color: #6b7280; max-height: 60px; overflow-y: auto; white-space: pre-wrap; margin-top: 6px; background: #f3f4f6; border-radius: 4px; padding: 6px 8px; display: none; }
+  .btn-row { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
+  button {
+    padding: 9px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: none;
+  }
+  .btn-primary { background: #6366f1; color: #fff; }
+  .btn-primary:hover { background: #4f46e5; }
+  .btn-secondary { background: #fff; color: #374151; border: 1px solid #d1d5db; }
+  .btn-secondary:hover { background: #f9fafb; }
+  .btn-install { background: #f59e0b; color: #fff; font-size: 12px; padding: 7px 14px; }
+  .btn-install:hover { background: #d97706; }
+  .btn-install:disabled { opacity: 0.5; cursor: default; }
+  #save-msg { font-size: 12px; color: #15803d; display: none; margin-right: auto; align-self: center; }
+</style>
+</head>
+<body>
+  <h2>⚙️ 설정</h2>
+
+  <div class="field">
+    <label>Anthropic API Key</label>
+    <input type="password" id="api-key" placeholder="sk-ant-api03-..." autocomplete="off" />
+  </div>
+
+  <div class="field">
+    <label>Playwright 실행 모드</label>
+    <div class="toggle-row">
+      <input type="checkbox" id="headless" />
+      <span class="toggle-label">Headless 모드 (브라우저 창 숨김, 권장)</span>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="chromium-section">
+    <h3>Playwright Chromium</h3>
+    <div id="chromium-status" class="chromium-status">확인 중...</div>
+    <button id="btn-install" class="btn-install" onclick="installChromium()" disabled>Chromium 설치</button>
+    <div id="chromium-log" class="chromium-log"></div>
+  </div>
+
+  <div class="btn-row">
+    <span id="save-msg">저장되었습니다. 서버를 재시작 중...</span>
+    <button class="btn-secondary" onclick="window.close()">닫기</button>
+    <button class="btn-primary" onclick="saveConfig()">저장 및 적용</button>
+  </div>
+
+  <script>
+    const api = window.electronAPI;
+
+    async function load() {
+      const cfg = await api.getConfig();
+      document.getElementById('api-key').value = cfg.anthropicApiKey || '';
+      document.getElementById('headless').checked = cfg.playwrightHeadless !== false;
+
+      const installed = await api.checkChromium();
+      const statusEl = document.getElementById('chromium-status');
+      const btnInstall = document.getElementById('btn-install');
+      if (installed) {
+        statusEl.textContent = '✅ Chromium이 설치되어 있습니다.';
+        statusEl.className = 'chromium-status ok';
+        btnInstall.disabled = true;
+      } else {
+        statusEl.textContent = '⚠️ Chromium이 설치되어 있지 않습니다. 설치가 필요합니다.';
+        statusEl.className = 'chromium-status missing';
+        btnInstall.disabled = false;
+      }
+    }
+
+    async function saveConfig() {
+      const apiKey = document.getElementById('api-key').value.trim();
+      const headless = document.getElementById('headless').checked;
+      const msgEl = document.getElementById('save-msg');
+      msgEl.style.display = 'inline';
+      await api.saveConfig({ anthropicApiKey: apiKey, playwrightHeadless: headless });
+      msgEl.textContent = '저장 완료! (서버 재시작됨)';
+      setTimeout(() => { msgEl.style.display = 'none'; }, 3000);
+    }
+
+    async function installChromium() {
+      const btn = document.getElementById('btn-install');
+      const logEl = document.getElementById('chromium-log');
+      btn.disabled = true;
+      btn.textContent = '설치 중...';
+      logEl.style.display = 'block';
+
+      api.onChromiumProgress((msg) => {
+        logEl.textContent += msg;
+        logEl.scrollTop = logEl.scrollHeight;
+      });
+
+      const result = await api.installChromium();
+      if (result.success) {
+        document.getElementById('chromium-status').textContent = '✅ Chromium 설치 완료!';
+        document.getElementById('chromium-status').className = 'chromium-status ok';
+        btn.textContent = '설치 완료';
+      } else {
+        btn.disabled = false;
+        btn.textContent = '재시도';
+        logEl.textContent += '\n오류: ' + result.error;
+      }
+    }
+
+    load();
+  </script>
+</body>
+</html>

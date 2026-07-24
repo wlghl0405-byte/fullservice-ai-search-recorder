@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'">
+<title>로딩 중...</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'Segoe UI', sans-serif;
+    background: #111827;
+    color: #f9fafb;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    -webkit-app-region: drag;
+  }
+  .logo { font-size: 28px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
+  .subtitle { font-size: 13px; color: #9ca3af; margin-bottom: 40px; }
+  .spinner {
+    width: 36px; height: 36px;
+    border: 3px solid #374151;
+    border-top-color: #6366f1;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-bottom: 20px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  #status {
+    font-size: 13px;
+    color: #9ca3af;
+    text-align: center;
+    max-width: 360px;
+    line-height: 1.6;
+    white-space: pre-line;
+  }
+</style>
+</head>
+<body>
+  <div class="logo">풀서비스 검수 자동화</div>
+  <div class="subtitle">Megastudy AI Search Recorder</div>
+  <div class="spinner"></div>
+  <div id="status">앱을 시작하는 중입니다...</div>
+  <script>
+    window.electronAPI?.onStatus((msg) => {
+      document.getElementById('status').textContent = msg;
+    });
+  </script>
+</body>
+</html>

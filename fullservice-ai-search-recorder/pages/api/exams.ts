@@ -4,7 +4,8 @@ import { Exam } from '../../lib/types';
 import fs from 'fs';
 import path from 'path';
 
-const EXAM_FILE = path.join(process.cwd(), 'data', 'saved', 'exams.json');
+const DATA_BASE = process.env.DATA_DIR || path.join(process.cwd(), 'data');
+const EXAM_FILE = path.join(DATA_BASE, 'saved', 'exams.json');
 
 function loadExams(): Exam[] {
   try {
